@@ -1,0 +1,32 @@
+name: Compilar Windows
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Compilar y empaquetar
+        shell: powershell
+        run: .\Crear-Paquete.ps1
+      - name: Conservar paquete portable
+        uses: actions/upload-artifact@v7
+        with:
+          name: PortPilot-Windows
+          path: |
+            artifacts/PortPilot-Windows.zip
+            artifacts/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
