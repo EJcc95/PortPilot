@@ -1,0 +1,24 @@
+# Compilaciones y paquetes
+dist/
+artifacts/
+bin/
+obj/
+*.exe
+*.pdb
+*.zip
+
+# Preferencias locales
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini
+
+# Datos y credenciales locales
+.env
+.env.*
+!.env.example
+*.csv
+*.log
+*.tmp
